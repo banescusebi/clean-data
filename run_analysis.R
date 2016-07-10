@@ -77,7 +77,7 @@ steps1to4 = function(pathToDataset) {
   
   ## Bind the labels and the subjects columns to the measurements.
   uciHarDataset$V1 = uciHarLabels$V1
-  uciHarDataset$subject = uciHarSubjects$V1
+  uciHarDataset$subjectId = uciHarSubjects$V1
   
   ## Use descriptive activity names to name the activities in the data set.
   ## Load the activity labels from "activity_labels.txt" and join them
@@ -112,10 +112,15 @@ step5 = function(uciHarDataset) {
   ## Fourth, create 3 columns representing: "signal", "measure" and "axis" from the 
   ## previously created key column.
   tidyDataset = uciHarDataset %>% 
-                group_by(activityName, subject) %>%
+                group_by(activityName, subjectId) %>%
                 summarise_each(funs(mean)) %>%
-                gather(signal.measure.axis, value, -subject, -activityName) %>%
+                gather(signal.measure.axis, value, -subjectId, -activityName) %>%
                 separate(signal.measure.axis, c("signal", "measure", "axis"))
+  
+  ## Convert new columns from charater strings to factors to reduce space usage.
+  tidyDataset$signal = as.factor(tidyDataset$signal)
+  tidyDataset$measure = as.factor(tidyDataset$measure)
+  tidyDataset$axis = as.factor(tidyDataset$axis)
   
   ## Save the tidy dataset as a CSV file. This is the file which is also part of
   ## the Github repository.
