@@ -129,3 +129,14 @@ step5 = function(uciHarDataset) {
   ## Return tidy dataset from step 5.
   tidyDataset
 }
+
+## Run the analysis assuming the UCI HAR Dataset is in the working directory.
+path = "./"
+## Check if the archive has been unpacked in the current directory in its root
+## folder name "UCI HAR Dataset".
+if (file.exists("./UCI HAR Dataset/train/")) {
+  path = "./UCI HAR Dataset/"
+}
+
+messyDataset = steps1to4(path)
+tidyDataset = step5(messyDataset)

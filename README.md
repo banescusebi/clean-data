@@ -25,3 +25,5 @@ This repository contains the following files required for the "Mentor Graded Ass
 
   Function **"steps1to4"** takes as input argument, an absolute or relative path to the folder in which the unpacked UCI HAR dataset is stored, i.e. this path should contain the folders called "train" and "test" as well as files "features.txt" and "activity_labels.txt". The return value of this function is the dataset from step 4, which should be given as input to function "step5".  
   Function **"step5"** creates a tidy data set with the average of each variable for each activity and each subject of the dataset passed as input. This agurment of this function should be the return value of the "steps1to4" function. This function represents the 5th step of the  assignment and it stores the tidy dataset in a text file and also returns the tidy dataset.
+
+  At the end of the run_analysis.R file there are a few lines of code which call the 2 functions assuming the UCI HAR Dataset is in the working directory.
