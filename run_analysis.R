@@ -100,7 +100,7 @@ steps1to4 = function(pathToDataset) {
 ## for each activity and each subject of the dataset passed as input.
 ## This agurment of this function should be the return value of the "steps1to4"
 ## function defined above. This function represents the 5th step of the 
-## assignment and it stores the tidy dataset in a CSV file and also returns the
+## assignment and it stores the tidy dataset in a text file and also returns the
 ## tidy dataset.
 step5 = function(uciHarDataset) {
   ## First group the dataset by activity name and subject. Second, summarize
@@ -122,9 +122,9 @@ step5 = function(uciHarDataset) {
   tidyDataset$measure = as.factor(tidyDataset$measure)
   tidyDataset$axis = as.factor(tidyDataset$axis)
   
-  ## Save the tidy dataset as a CSV file. This is the file which is also part of
+  ## Save the tidy dataset as a text file. This is the file which is also part of
   ## the Github repository.
-  write.csv(tidyDataset, file = "./tidyDataset.csv")
+  write.table(tidyDataset, file = "./tidyDataset.txt", row.name = FALSE)
   
   ## Return tidy dataset from step 5.
   tidyDataset
