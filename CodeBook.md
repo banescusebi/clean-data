@@ -2,40 +2,11 @@
 
 This code book that modifies and updates the codebooks available in the UCI HAR Dataset with the data to indicate all the variables and summaries calculated in the tidy dataset, along with units, and any other relevant information.
 
-Column Name | Unit | Possible Values or Range | Description
-------------|------|--------------------------|------------
+
+Variable Name | Unit | Possible Values or Range | Description
+--------------|------|--------------------------|------------
 activityName | Factor | LAYING, SITTING, STANDING, WALKING, WALKING_DOWNSTAIRS, WALKING_UPSTAIRS | A descriptive name of the activity performed by a subject during the measurement corresponding to the current row.
 subject | Integer | 1..30 | Identification (ID) number of the subject that performed the activity for the current row.
-tBodyAcc.{mean|std}.{X|Y|Z} | Double | -1..1 | Mean value of body accelleration signal along
-
-tGravityAcc-XYZ
-
-tBodyAccJerk-XYZ
-
-tBodyGyro-XYZ
-
-tBodyGyroJerk-XYZ
-
-tBodyAccMag
-
-tGravityAccMag
-
-tBodyAccJerkMag
-
-tBodyGyroMag
-
-tBodyGyroJerkMag
-
-fBodyAcc-XYZ
-
-fBodyAccJerk-XYZ
-
-fBodyGyro-XYZ
-
-fBodyAccMag
-
-fBodyAccJerkMag
-
-fBodyGyroMag
-
-fBodyGyroJerkMag
+signal | Factor | "tBodyAcc", "tGravityAcc", "tBodyAccJerk", "tBodyGyro", "tBodyGyroJerk", "fBodyAcc", "fBodyAccJerk", "fBodyGyro" | The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ. (Note the 'f' to indicate frequency domain signals).
+measure | Factor | "mean", "std" | The type of function applied to the signal: mean or standard deviation (std).
+axis | Factor | "X", "Y", "Z" | The axis along which the measurement is performed. 

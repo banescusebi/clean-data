@@ -14,6 +14,7 @@
 ## author: Sebastian Banescu
 
 library(dplyr)
+library(tidyr)
 
 ## This function performs the first 4 steps of the assignment. The input 
 ## argument of this function should be an absolute or relative path to the
@@ -69,10 +70,10 @@ steps1to4 = function(pathToDataset) {
   colnames(uciHarDataset) = names
   
   ## Extract only the measurements on the mean and standard deviation for each measurement.
-  ## Only variables (columns) names which have the sequence of characters: "mean",
-  ## "Mean", "std" or "Std" are selected.
+  ## Only variables (columns) names which have both a mean AND a standard deviation (std) 
+  ## are selected. Other values that only have a mean value are not selected.
   uciHarDataset = uciHarDataset %>% 
-                  select(matches("[mM]ean|[sS]td"))
+                  select(matches("\\.(mean|std)*\\."))
   
   ## Bind the labels and the subjects columns to the measurements.
   uciHarDataset$V1 = uciHarLabels$V1
@@ -104,9 +105,17 @@ steps1to4 = function(pathToDataset) {
 step5 = function(uciHarDataset) {
   ## First group the dataset by activity name and subject. Second, summarize
   ## each column according to the groupings where our summary function is the mean.
+  ## The dataset now contains values are column names. Each column is now a triplet 
+  ## comprising of: (1) the type of recorded signal, (2) the type of measure and
+  ## (3) the axis along which the measure was taken. Next we reshape this dataset.
+  ## Third, merge all columns into key-value pairs. Keys are old column names.
+  ## Fourth, create 3 columns representing: "signal", "measure" and "axis" from the 
+  ## previously created key column.
   tidyDataset = uciHarDataset %>% 
                 group_by(activityName, subject) %>%
-                summarise_each(funs(mean))
+                summarise_each(funs(mean)) %>%
+                gather(signal.measure.axis, value, -subject, -activityName) %>%
+                separate(signal.measure.axis, c("signal", "measure", "axis"))
   
   ## Save the tidy dataset as a CSV file. This is the file which is also part of
   ## the Github repository.

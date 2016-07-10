@@ -6,7 +6,8 @@ This repository contains the required files for the "Mentor Graded Assignment: G
   * Each variable forms a column.
   * Each observation forms a row.
   * Each type of observational unit forms a table.
-Moreover the tidy dataset does not inolve any of the common problems of messy datasets, i.e.:
+
+  Moreover the tidy dataset does not inolve any of the common problems of messy datasets, i.e.:
   * Column headers are values, not variable names.
   * Multiple variables are stored in one column.
   * Variables are stored in both rows and columns.
